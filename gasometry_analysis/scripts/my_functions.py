@@ -12,6 +12,7 @@ my_blue="#0064B2";
 my_red="#D61600";
 
 def accuracy_assessment(param_y_test, param_y_pred):
+    tab=pd.DataFrame(columns=["Zmienna", "Wartość"])
     accuracy = accuracy_score(param_y_test, param_y_pred)
     print("Accuracy:", accuracy)
 
@@ -26,6 +27,12 @@ def accuracy_assessment(param_y_test, param_y_pred):
 
     f1 = f1_score(param_y_test, param_y_pred, average="weighted")
     print("F1-Score:", f1)
+
+    tab.append("Accuracy:", accuracy)
+    tab.append("Precision:", precision)
+    tab.append("Sensivity (recall):", recall)
+    tab.append("F1-Score:", f1)
+
 
 def train_test_plot(depth, ma_train, ma_test, x_label, title):
     df_pom=pd.DataFrame({'depth':depth, 'ma_train': ma_train, 'ma_test':ma_test})
