@@ -12,7 +12,7 @@ my_blue="#0064B2";
 my_red="#D61600";
 
 def accuracy_assessment(param_y_test, param_y_pred):
-    tab=pd.DataFrame(columns=["Zmienna", "Wartość"])
+    # tab=pd.DataFrame(columns=["Zmienna", "Wartość"])
     accuracy = accuracy_score(param_y_test, param_y_pred)
     print("Accuracy:", accuracy)
 
@@ -28,13 +28,13 @@ def accuracy_assessment(param_y_test, param_y_pred):
     f1 = f1_score(param_y_test, param_y_pred, average="weighted")
     print("F1-Score:", f1)
 
-    tab.append("Accuracy:", accuracy)
-    tab.append("Precision:", precision)
-    tab.append("Sensivity (recall):", recall)
-    tab.append("F1-Score:", f1)
+    # tab.append("Accuracy:", accuracy)
+    # tab.append("Precision:", precision)
+    # tab.append("Sensivity (recall):", recall)
+    # tab.append("F1-Score:", f1)
 
 
-def train_test_plot(depth, ma_train, ma_test, x_label, title):
+def train_test_plot(depth, ma_train, ma_test, x_label,path):
     df_pom=pd.DataFrame({'depth':depth, 'ma_train': ma_train, 'ma_test':ma_test})
     fig = px.line(df_pom, x='depth', y=['ma_train', 'ma_test'], markers=True, line_shape='linear',
                 labels={'variable': 'Zbiór danych'},
@@ -63,7 +63,7 @@ def train_test_plot(depth, ma_train, ma_test, x_label, title):
     )
     fig.update_layout(template="plotly_white")
     fig.show()
-    fig.write_image("../images/"+title+ ".png", width=1000, height=600, scale=4, format="png")
+    fig.write_image(path+ ".png", width=1000, height=600, scale=4, format="png")
 
     
 def significant_variables(model, param_x_train, name):
